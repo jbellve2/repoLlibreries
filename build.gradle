@@ -1,9 +1,86 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
 group = 'org.example'
-version = '1.0-SNAPSHOT'
+version = ''
+
+
+
+
+
+/******** repositoris de pujada ************/
+publishing {
+    publications {
+        library(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+
+////          // myMavenRepo
+//
+//        repositories {
+//            maven {
+//                url myMavenRepoWriteUrl
+//
+//                credentials {
+//                    username myMavenRepoWriteUsername
+//                    password myMavenRepoWritePassword
+//                }
+//            }
+//        }
+//        publications {
+//            maven(MavenPublication) {
+//                from components.java
+//
+//
+//            }
+//        }
+
+////        // gitLab
+//            maven {
+//                url "https://gitlab.com/api/v4/projects/34370531/packages/maven"
+//                credentials(HttpHeaderCredentials) {
+//                    name = "Private-Token"
+//                    value = gitLabPrivateToken // the variable resides in ~/.gradle/gradle.properties
+//                }
+//                authentication {
+//                    header(HttpHeaderAuthentication)
+//                }
+//            }
+//
+//
+        // gitHub
+
+//        maven {
+//            name = "GitHubPackages"
+//            url = uri("https://maven.pkg.github.com/jbellve2/llibreries")
+//
+//            credentials {
+//                password = project.findProperty("githubToken") ?: System.getenv("GITHUB_TOKEN")
+//                username = project.findProperty("githubUsername") ?: System.getenv("GITHUB_USER")
+//            }
+//        }// final github
+
+
+
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/jbellve2/repoLlibreries")
+
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }// final github
+
+
+    }
+}
+/******** !repositoris de pujada ************/
+
 
 repositories {
     mavenCentral()
